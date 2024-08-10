@@ -5,6 +5,7 @@ from store.models import Product
 
 
 def say_hello(request):
-    exists = Product.objects.filter(pk=0).exists()
-    
-    return render(request, 'hello.html', { 'name': 'John'})
+    query_set = Product.objects.filter(unit_price__range=(20, 30))
+
+
+    return render(request, 'hello.html', { 'name': 'John', 'products': list(query_set)})
