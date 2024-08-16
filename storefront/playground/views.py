@@ -6,7 +6,10 @@ from store.models import Product, Customer, Collection, Order, OrderItem
 
 
 def say_hello(request):
-    product = Product.objects.filter(pk=0).exists()
+    query_set = Product.objects.all()
+
+    for product in query_set:
+        print(product)
     
     return render(request, 'hello.html', { 'name': 'John Itopa ISAH'})
 
