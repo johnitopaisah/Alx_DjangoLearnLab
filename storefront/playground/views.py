@@ -7,8 +7,8 @@ from store.models import Product, Customer, Collection, Order, OrderItem
 
 def say_hello(request):
     
-    query_set = Product.objects.filter(description__isnull=True)
-    
+    # query_set = Product.objects.filter(inventory__lt=10)
+    query_set = Product.objects.filter(inventory__lt=10).filter(unit_price__lt=20)
     return render(request, 'hello.html', { 'name': 'John Itopa ISAH', 'products': list(query_set)})
 
 # def say_hello(request):
