@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
 from .views import list_books, LibraryDetailView
 from .views import login_view, CustomLogoutView, RegisterView
 
@@ -8,7 +9,19 @@ urlpatterns = [
     path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),
 
     # Authentication URLs
-    path('login/', login_view, name='login'),  # Function-based view for login
-    path('logout/', CustomLogoutView.as_view(), name='logout'),  # Class-based view for logout
-    path('register/', RegisterView.as_view(), name='register'),  # Class-based view for registration
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
 ]
+
+
+# from django.urls import path
+# from django.contrib.auth.views import LoginView, LogoutView
+# from .views import RegisterView
+
+# urlpatterns = [
+#     # Authentication URLs
+#     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+#     path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+#     path('register/', RegisterView.as_view(), name='register'),
+# ]
