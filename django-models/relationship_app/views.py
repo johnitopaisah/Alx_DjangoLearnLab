@@ -17,6 +17,19 @@ from django.shortcuts import render
 from .models import Book
 
 
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm  # Ensure this import is present
+from django.contrib.auth.views import LoginView, LogoutView
+from .models import Author, Book, Library, Librarian
+
+class RegisterView(CreateView):
+    form_class = UserCreationForm  # Ensure you are using UserCreationForm here
+    template_name = 'relationship_app/register.html'
+    success_url = reverse_lazy('login')
+
+
+
 def list_books(request):
     books = Book.objects.all()  # Fetch all books from the database
     return render(request, 'relationship_app/list_books.html', {'books': books})
