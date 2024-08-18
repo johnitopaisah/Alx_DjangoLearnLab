@@ -1,4 +1,3 @@
-# relationship_app/query_samples.py
 from relationship_app.models import Author, Book, Library, Librarian
 
 def run_queries():
@@ -19,7 +18,7 @@ def run_queries():
         print(book.title)
 
     # Retrieve the librarian for a library
-    librarian = library.librarian
+    librarian = Librarian.objects.get(library=library)  # Fetch the librarian based on the library
     print(f"Librarian of {library_name}: {librarian.name}")
 
 if __name__ == "__main__":
