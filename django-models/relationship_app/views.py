@@ -1,4 +1,3 @@
-
 from typing import Any
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -100,3 +99,4 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('list_all_books')
     return render(request, 'relationship_app/delete_book.html', {'book': book})
+
